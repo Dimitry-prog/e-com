@@ -21,7 +21,7 @@ const AdminPage = async () => {
       <DashboardCard
         title="Customers"
         description={`${formatNumber(averageValue.averageValue)} Average Value`}
-        content={formatCurrency(averageValue.userCount)}
+        content={formatCurrency(averageValue.customersCount)}
       />
       <DashboardCard
         title="Products"
