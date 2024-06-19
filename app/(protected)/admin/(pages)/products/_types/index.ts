@@ -3,5 +3,7 @@ export type ProductTableType = {
   name: string;
   isAvailableForPurchase: boolean;
   priceInCents: number;
-  countOrders: number;
+  _count: {
+    orders: number;
+  };
 };

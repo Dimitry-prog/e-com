@@ -1,9 +1,11 @@
 'use client';
 
+import { Product } from '@prisma/client';
 import Image from 'next/image';
 import { useState } from 'react';
 import { useFormState } from 'react-dom';
 
+import { updateProduct } from '@/app/(protected)/admin/(pages)/products/[productId]/edit/_actions';
 import { createProduct } from '@/app/(protected)/admin/(pages)/products/create/_actions';
 import SubmitButton from '@/shared/components/submit-button';
 import { Input } from '@/shared/components/ui/input';
@@ -12,18 +14,21 @@ import { Textarea } from '@/shared/components/ui/textarea';
 import { formatCurrency } from '@/shared/lib/formatters';
 
 type ProductFormProps = {
-  product?: {} | null;
+  product?: Product | null;
 };
 
 const ProductForm = ({ product }: ProductFormProps) => {
-  const [error, action] = useFormState(createProduct, {});
+  const [error, action] = useFormState(
+    product == null ? createProduct : updateProduct.bind(null, product.id),
+    {}
+  );
   const [priceInCents, setPriceInCents] = useState<number | undefined>(product?.priceInCents);
-
+  console.log(product);
   return (
     <form action={action} className="space-y-8">
       <div className="space-y-2">
         <Label htmlFor="name">Name</Label>
-        <Input defaultValue={product?.name} id="name" type="text" name="name" required />
+        <Input defaultValue={product?.name || ''} id="name" type="text" name="name" required />
         {error?.name && <p className="text-destructive">{error.name}</p>}
       </div>
 
@@ -63,9 +68,7 @@ const ProductForm = ({ product }: ProductFormProps) => {
         <Label htmlFor="image">Image</Label>
         <Input id="image" type="file" name="image" required={product == null} />
         {product != null && (
-          <Image src={product.imagePath} height={300} weight={300} alt={product.name}>
-            {product.imagePath}
-          </Image>
+          <Image src={product.imagePath} height={300} width={300} alt={product.name} />
         )}
         {error?.image && <p className="text-destructive">{error.image}</p>}
       </div>

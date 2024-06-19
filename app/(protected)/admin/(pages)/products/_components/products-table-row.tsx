@@ -37,7 +37,7 @@ const ProductsTableRow = ({ product }: ProductsTableRowProps) => {
 
       <TableCell>{product.name}</TableCell>
       <TableCell>{formatCurrency(product.priceInCents)}</TableCell>
-      <TableCell>{formatNumber(product.countOrders)}</TableCell>
+      <TableCell>{formatNumber(product._count.orders)}</TableCell>
       <TableCell>
         <DropdownMenu>
           <DropdownMenuTrigger>
@@ -59,7 +59,7 @@ const ProductsTableRow = ({ product }: ProductsTableRowProps) => {
               isAvailable={product.isAvailableForPurchase}
             />
 
-            {product.countOrders === 0 && (
+            {product._count.orders === 0 && (
               <>
                 <DropdownMenuSeparator />
                 <ProductsTableDeleteDropdownItem id={product.id} />

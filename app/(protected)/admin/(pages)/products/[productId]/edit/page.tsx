@@ -1,5 +1,6 @@
 import AdminHeader from '@/app/(protected)/admin/_components/admin-header';
 import ProductForm from '@/app/(protected)/admin/(pages)/products/_components/product-form';
+import { getProductById } from '@/app/(protected)/admin/(pages)/products/[productId]/_actions';
 
 type EditProductPageProps = {
   params: {
@@ -8,14 +9,7 @@ type EditProductPageProps = {
 };
 
 const EditProductPage = async ({ params: { productId } }: EditProductPageProps) => {
-  const product = {
-    id: 'test',
-    name: 'test',
-    description: 'test',
-    isAvailableForPurchase: false,
-    priceInCents: 0,
-    countOrders: 2,
-  };
+  const product = await getProductById(productId);
 
   return (
     <>
