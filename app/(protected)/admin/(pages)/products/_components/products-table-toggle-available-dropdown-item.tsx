@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useTransition } from 'react';
 
+import { toggleAvailabilityProduct } from '@/app/(protected)/admin/(pages)/products/_actions/toggle-availability-product';
 import { DropdownMenuItem } from '@/shared/components/ui/dropdown-menu';
 
 type ProductsTableToggleAvailableDropdownItemProps = {
@@ -22,6 +23,7 @@ const ProductsTableToggleAvailableDropdownItem = ({
       disabled={isPending}
       onClick={() => {
         startTransition(async () => {
+          await toggleAvailabilityProduct(id, !isAvailable);
           router.refresh();
         });
       }}

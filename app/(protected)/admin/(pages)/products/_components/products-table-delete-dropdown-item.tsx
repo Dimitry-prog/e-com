@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useTransition } from 'react';
 
+import { deleteProduct } from '@/app/(protected)/admin/(pages)/products/_actions/delete-product';
 import { DropdownMenuItem } from '@/shared/components/ui/dropdown-menu';
 
 type ProductsTableDeleteDropdownItemProps = {
@@ -19,6 +20,7 @@ const ProductsTableDeleteDropdownItem = ({ id }: ProductsTableDeleteDropdownItem
       disabled={isPending}
       onClick={() => {
         startTransition(async () => {
+          await deleteProduct(id);
           router.refresh();
         });
       }}

@@ -23,7 +23,7 @@ const ProductForm = ({ product }: ProductFormProps) => {
     {}
   );
   const [priceInCents, setPriceInCents] = useState<number | undefined>(product?.priceInCents);
-  console.log(product);
+
   return (
     <form action={action} className="space-y-8">
       <div className="space-y-2">
