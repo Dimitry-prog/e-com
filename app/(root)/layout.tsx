@@ -5,11 +5,9 @@ import Nav from '@/shared/components/nav';
 import NavLink from '@/shared/components/nav-link';
 
 export const metadata: Metadata = {
-  title: 'Admin',
-  description: 'Admin page',
+  title: 'Home',
+  description: 'Home page',
 };
-
-export const dynamic = 'force-dynamic';
 
 export default function RootLayout({
   children,
@@ -20,12 +18,12 @@ export default function RootLayout({
     <>
       <header>
         <Nav>
-          <NavLink href="/admin">Dashboard</NavLink>
-          <NavLink href="/admin/products">Products</NavLink>
-          <NavLink href="/admin/users">Customers</NavLink>
-          <NavLink href="/admin/orders">Sales</NavLink>
+          <NavLink href="/">Home</NavLink>
+          <NavLink href="/products">Products</NavLink>
+          <NavLink href="/orders">My Orders</NavLink>
         </Nav>
       </header>
+
       <main className="container my-6">{children}</main>
     </>
   );
