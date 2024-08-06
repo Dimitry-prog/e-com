@@ -1,6 +1,6 @@
 import AdminHeader from '@/app/(protected)/admin/_components/admin-header';
 import ProductForm from '@/app/(protected)/admin/(pages)/products/_components/product-form';
-import { getProductById } from '@/app/(protected)/admin/(pages)/products/[productId]/_actions';
+import { getProductById } from '@/shared/actions/get-product-by-id';
 
 type EditProductPageProps = {
   params: {
