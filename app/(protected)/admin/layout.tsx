@@ -23,7 +23,7 @@ export default function RootLayout({
           <NavLink href="/admin">Dashboard</NavLink>
           <NavLink href="/admin/products">Products</NavLink>
           <NavLink href="/admin/customers">Customers</NavLink>
-          <NavLink href="/admin/orders">Sales</NavLink>
+          <NavLink href="/admin/sales">Sales</NavLink>
         </Nav>
       </header>
       <main className="container my-6">{children}</main>

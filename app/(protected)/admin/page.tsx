@@ -20,13 +20,13 @@ const AdminPage = async () => {
       />
       <DashboardCard
         title="Customers"
-        description={`${formatNumber(averageValue.averageValue)} Average Value`}
-        content={formatCurrency(averageValue.customersCount)}
+        description={`${formatCurrency(averageValue.averageValue)} Average Value`}
+        content={formatNumber(averageValue.customersCount)}
       />
       <DashboardCard
         title="Products"
         description={`${formatNumber(products.inactiveCount)} Inactive`}
-        content={formatCurrency(products.activeCount)}
+        content={formatNumber(products.activeCount)}
       />
     </div>
   );
