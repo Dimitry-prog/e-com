@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-import { createDownloadVerification } from '@/app/(root)/products/_actions/create-download-verification';
+import { createDownloadVerification } from '@/app/(root)/_actions/create-download-verification';
 import { getProductById } from '@/shared/actions/get-product-by-id';
 import { Button } from '@/shared/components/ui/button';
 import { STRIPE } from '@/shared/lib/constants';
