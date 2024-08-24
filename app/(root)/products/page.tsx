@@ -1,13 +1,12 @@
 import { Suspense } from 'react';
 
-import { getProducts } from '@/app/(root)/products/_actions/get-products';
+import ProductSection from '@/app/(root)/products/components/product-section';
 import ProductCardSkeleton from '@/shared/components/product-card-skeleton';
-import ProductsGridSection from '@/shared/components/products-grid-section';
 
 const ProductsPage = () => {
   return (
     <Suspense fallback={<ProductCardSkeleton />}>
-      <ProductsGridSection title="Newest" fetcherProducts={getProducts} />
+      <ProductSection />
     </Suspense>
   );
 };
