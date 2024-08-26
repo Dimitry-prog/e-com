@@ -2,8 +2,9 @@
 
 import { createDownloadVerification } from '@/app/(root)/_actions/create-download-verification';
 import { emailOrderHistorySchema } from '@/app/(root)/orders/_schemas';
-import { RESEND } from '@/shared/lib/constants';
+import OrdersHistoryEmail from '@/shared/components/email/orders-history-email';
 import { db } from '@/shared/lib/db';
+import { sendVerificationEmail } from '@/shared/lib/email';
 
 export const emailOrderHistory = async (
   prevState: unknown,
@@ -55,12 +56,11 @@ export const emailOrderHistory = async (
     downloadVerificationId: await createDownloadVerification(order.product.id),
   }));
 
-  const data = await RESEND.emails.send({
-    from: `Support <${process.env.SENDER_EMAIL}>`,
-    to: user.email,
-    subject: 'Order History',
-    react: 'teyre',
-  });
+  const data = await sendVerificationEmail(
+    user.email,
+    'Order History',
+    <OrdersHistoryEmail orders={await Promise.all(orders)} />
+  );
 
   if (data.error) {
     return {

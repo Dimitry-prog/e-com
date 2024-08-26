@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import { getProductById } from '@/shared/actions/get-product-by-id';
+import PurchaseReceiptEmail from '@/shared/components/email/purchase-receipt-email';
 import { DOWNLOAD_TIME, STRIPE } from '@/shared/lib/constants';
 import { db } from '@/shared/lib/db';
 import { sendVerificationEmail } from '@/shared/lib/email';
@@ -67,7 +68,15 @@ export const POST = async (request: NextRequest) => {
       },
     });
 
-    await sendVerificationEmail(email, 'Hello');
+    await sendVerificationEmail(
+      email,
+      'Order Confirmation',
+      <PurchaseReceiptEmail
+        order={userOrders.orders[0]}
+        product={product}
+        downloadVerificationId={downloadingVerification.id}
+      />
+    );
   }
 
   return new Response('', { status: 200 });

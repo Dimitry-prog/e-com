@@ -1,13 +1,14 @@
 import { ReactNode } from 'react';
-import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+import { RESEND } from '@/shared/lib/constants';
 
-export const sendVerificationEmail = async (email: string, body: ReactNode) => {
-  await resend.emails.send({
+export const sendVerificationEmail = async (email: string, title: string, body: ReactNode) => {
+  const data = await RESEND.emails.send({
     from: `Support <${process.env.SENDER_EMAIL}>`,
     to: email,
-    subject: 'Order Confirmation',
+    subject: title,
     react: body,
   });
+
+  return data;
 };
